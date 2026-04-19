@@ -1,0 +1,105 @@
+type UserProfile = 
+ record {
+   createdAt: Timestamp;
+   financialGoals: opt vec FinancialGoal;
+   onboardingCompleted: bool;
+   professionStatus: opt ProfessionStatus;
+ };
+type UserId = principal;
+type Timestamp = int;
+type SavingsGoalPublic = 
+ record {
+   currentAmount: float64;
+   id: GoalId;
+   name: text;
+   owner: UserId;
+   targetAmount: float64;
+   targetDate: Timestamp;
+ };
+type ProfessionStatus = 
+ variant {
+   BusinessMan;
+   Employee;
+   Entrepreneur;
+   Freelancer;
+   Other;
+   Student;
+ };
+type GoalId = text;
+type FinancialGoal = 
+ variant {
+   BuildWealth;
+   Other;
+   PayOffDebt;
+   SaveForEmergencies;
+   SaveForPurchase;
+   TrackSpending;
+ };
+type ExpenseId = text;
+type Expense = 
+ record {
+   amount: float64;
+   category: Category;
+   date: Timestamp;
+   id: ExpenseId;
+   note: opt text;
+   owner: UserId;
+ };
+type CategoryLimits = 
+ record {
+   bills: opt float64;
+   entertainment: opt float64;
+   food: opt float64;
+   health: opt float64;
+   other: opt float64;
+   shopping: opt float64;
+   transport: opt float64;
+ };
+type Category = 
+ variant {
+   Bills;
+   Entertainment;
+   Food;
+   Health;
+   Other;
+   Shopping;
+   Transport;
+ };
+type Budget = 
+ record {
+   categoryLimits: CategoryLimits;
+   owner: UserId;
+   totalAmount: float64;
+ };
+type BadgeType = 
+ variant {
+   FirstBudget;
+   LoggingStreak7;
+   MonthlyOnTrack;
+ };
+type Badge = 
+ record {
+   badgeType: BadgeType;
+   earnedAt: Timestamp;
+   owner: UserId;
+ };
+service : {
+  addExpense: (id: ExpenseId, amount: float64, category: Category, note:
+   opt text, date: Timestamp) -> (Expense);
+  createGoal: (id: GoalId, name: text, targetAmount: float64, currentAmount:
+   float64, targetDate: Timestamp) -> (SavingsGoalPublic);
+  deleteExpense: (id: ExpenseId) -> (bool);
+  deleteGoal: (id: GoalId) -> (bool);
+  getBadges: () -> (vec Badge) query;
+  getBudget: () -> (opt Budget) query;
+  getExpenses: () -> (vec Expense) query;
+  getExpensesByMonth: (month: nat, year: nat) -> (vec Expense) query;
+  getGoals: () -> (vec SavingsGoalPublic) query;
+  getUserProfile: () -> (opt UserProfile);
+  saveUserProfile: (professionStatus: opt ProfessionStatus, financialGoals:
+   opt vec FinancialGoal, onboardingCompleted: bool) -> ();
+  setBudget: (totalAmount: float64, categoryLimits: CategoryLimits) ->
+   (Budget);
+  updateGoalProgress: (id: GoalId, addAmount: float64) ->
+   (opt SavingsGoalPublic);
+}

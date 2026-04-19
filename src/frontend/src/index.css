@@ -1,0 +1,173 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-display: "Space Grotesk";
+    --font-body: "DM Sans";
+    --font-mono: monospace;
+    --radius: 0.625rem;
+
+    --background: 0.975 0.012 168;
+    --foreground: 0.16 0.025 200;
+    --card: 0.99 0.006 168;
+    --card-foreground: 0.16 0.025 200;
+    --popover: 0.99 0.006 168;
+    --popover-foreground: 0.16 0.025 200;
+
+    --primary: 0.44 0.16 183;
+    --primary-foreground: 0.99 0.006 183;
+
+    --secondary: 0.93 0.018 168;
+    --secondary-foreground: 0.26 0.022 200;
+    --muted: 0.92 0.014 168;
+    --muted-foreground: 0.48 0.016 195;
+
+    --accent: 0.56 0.18 163;
+    --accent-foreground: 0.99 0.005 163;
+
+    --destructive: 0.54 0.22 22;
+    --destructive-foreground: 0.99 0.005 22;
+
+    --border: 0.88 0.014 175;
+    --input: 0.88 0.014 175;
+    --ring: 0.44 0.16 183;
+
+    --success: 0.58 0.18 148;
+    --warning: 0.7 0.16 82;
+
+    --chart-1: 0.58 0.18 148;
+    --chart-2: 0.44 0.16 183;
+    --chart-3: 0.7 0.16 82;
+    --chart-4: 0.54 0.22 22;
+    --chart-5: 0.56 0.18 163;
+
+    --sidebar: 0.99 0.006 168;
+    --sidebar-foreground: 0.16 0.025 200;
+    --sidebar-primary: 0.44 0.16 183;
+    --sidebar-primary-foreground: 0.99 0.006 183;
+    --sidebar-accent: 0.93 0.018 168;
+    --sidebar-accent-foreground: 0.26 0.022 200;
+    --sidebar-border: 0.88 0.014 175;
+    --sidebar-ring: 0.44 0.16 183;
+  }
+
+  .dark {
+    --background: 0.12 0.018 200;
+    --foreground: 0.92 0.012 200;
+    --card: 0.16 0.018 200;
+    --card-foreground: 0.92 0.012 200;
+    --popover: 0.2 0.018 200;
+    --popover-foreground: 0.92 0.012 200;
+
+    --primary: 0.7 0.16 175;
+    --primary-foreground: 0.12 0.018 175;
+
+    --secondary: 0.22 0.018 200;
+    --secondary-foreground: 0.85 0.012 200;
+    --muted: 0.22 0.018 200;
+    --muted-foreground: 0.55 0.012 200;
+
+    --accent: 0.62 0.15 163;
+    --accent-foreground: 0.12 0.018 163;
+
+    --destructive: 0.62 0.2 22;
+    --destructive-foreground: 0.99 0.005 22;
+
+    --border: 0.28 0.018 200;
+    --input: 0.28 0.018 200;
+    --ring: 0.7 0.16 175;
+
+    --success: 0.68 0.16 148;
+    --warning: 0.74 0.16 82;
+
+    --chart-1: 0.68 0.16 148;
+    --chart-2: 0.7 0.16 175;
+    --chart-3: 0.74 0.16 82;
+    --chart-4: 0.62 0.2 22;
+    --chart-5: 0.62 0.15 163;
+
+    --sidebar: 0.16 0.018 200;
+    --sidebar-foreground: 0.92 0.012 200;
+    --sidebar-primary: 0.7 0.16 175;
+    --sidebar-primary-foreground: 0.12 0.018 175;
+    --sidebar-accent: 0.22 0.018 200;
+    --sidebar-accent-foreground: 0.85 0.012 200;
+    --sidebar-border: 0.28 0.018 200;
+    --sidebar-ring: 0.7 0.16 175;
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+}
+
+@font-face {
+  font-family: "DM Sans";
+  src: url("/assets/fonts/DMSans.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("/assets/fonts/SpaceGrotesk.woff2") format("woff2");
+  font-display: swap;
+}
+
+@layer utilities {
+  .transition-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .text-success {
+    color: oklch(var(--success));
+  }
+
+  .bg-success {
+    background-color: oklch(var(--success));
+  }
+
+  .text-warning {
+    color: oklch(var(--warning));
+  }
+
+  .bg-warning {
+    background-color: oklch(var(--warning));
+  }
+
+  .badge-success {
+    @apply inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full font-semibold text-sm;
+    background-color: oklch(var(--success) / 0.15);
+    color: oklch(var(--success));
+  }
+
+  .badge-warning {
+    @apply inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full font-semibold text-sm;
+    background-color: oklch(var(--warning) / 0.15);
+    color: oklch(var(--warning));
+  }
+
+  .badge-alert {
+    @apply inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full font-semibold text-sm;
+    background-color: oklch(var(--destructive) / 0.15);
+    color: oklch(var(--destructive));
+  }
+
+  .shadow-subtle {
+    box-shadow: 0 1px 3px 0 oklch(var(--foreground) / 0.06), 0 1px 2px -1px
+      oklch(var(--foreground) / 0.04);
+  }
+
+  .shadow-elevated {
+    box-shadow: 0 4px 12px 0 oklch(var(--foreground) / 0.08), 0 2px 4px -1px
+      oklch(var(--foreground) / 0.06);
+  }
+
+  .card-fintrack {
+    @apply rounded-2xl border-0 shadow-subtle bg-card;
+  }
+}

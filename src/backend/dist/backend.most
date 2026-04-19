@@ -1,0 +1,117 @@
+// Version: 1.0.0
+type BadgeType__763678524 = {#FirstBudget; #LoggingStreak7; #MonthlyOnTrack};
+type Badge__473264247 =
+  {
+    badgeType : BadgeType__763678524;
+    earnedAt : Timestamp__301639476;
+    owner : UserId__158757552
+  };
+type Budget__278125643 =
+  {
+    categoryLimits : CategoryLimits__768452533;
+    owner : UserId__158757552;
+    totalAmount : Float
+  };
+type CategoryLimits__768452533 =
+  {
+    bills : ?Float;
+    entertainment : ?Float;
+    food : ?Float;
+    health : ?Float;
+    other : ?Float;
+    shopping : ?Float;
+    transport : ?Float
+  };
+type Category__116459539 =
+  {#Bills; #Entertainment; #Food; #Health; #Other; #Shopping; #Transport};
+type Data__791452850<K, V> =
+  {var count : Nat__490723111; kvs : [var ?(K, V)]};
+type ExpenseId__749238 = Text;
+type Expense__809941540 =
+  {
+    amount : Float;
+    category : Category__116459539;
+    date : Timestamp__301639476;
+    id : ExpenseId__749238;
+    note : ?Text;
+    owner : UserId__158757552
+  };
+type FinancialGoal__302397872 =
+  {
+    #BuildWealth;
+    #Other;
+    #PayOffDebt;
+    #SaveForEmergencies;
+    #SaveForPurchase;
+    #TrackSpending
+  };
+type GoalId__1036611184 = Text;
+type Internal__8484328<K, V> =
+  {children : [var ?Node__46230540<K, V>]; data : Data__791452850<K, V>};
+type Leaf__809889148<K, V> = {data : Data__791452850<K, V>};
+type List__415060402<T> = List__790383201<T>;
+type List__790383201<T> =
+  {
+    var blockIndex : Nat__490723111;
+    var blocks : [var [var ?T]];
+    var elementIndex : Nat__490723111
+  };
+type Nat__490723111 = Nat__920180692;
+type Nat__920180692 = Nat;
+type Node__46230540<K, V> =
+  {#internal : Internal__8484328<K, V>; #leaf : Leaf__809889148<K, V>};
+type ProfessionStatus__83812061 =
+  {#BusinessMan; #Employee; #Entrepreneur; #Freelancer; #Other; #Student};
+type SavingsGoal__1015804750 =
+  {
+    var currentAmount : Float;
+    id : GoalId__1036611184;
+    name : Text;
+    owner : UserId__158757552;
+    targetAmount : Float;
+    targetDate : Timestamp__301639476
+  };
+type Timestamp__301639476 = Int;
+type Timestamp__85834127 = Timestamp__301639476;
+type UserId__158349917 = UserId__4536909;
+type UserId__158757552 = Principal;
+type UserId__4536909 = UserId__158757552;
+type UserProfile__324532345 = UserProfile__702678360;
+type UserProfile__702678360 =
+  {
+    createdAt : Timestamp__85834127;
+    financialGoals : ?[FinancialGoal__302397872];
+    onboardingCompleted : Bool;
+    professionStatus : ?ProfessionStatus__83812061
+  };
+actor {
+  stable badgeStore :
+    {
+      var root :
+        Node__46230540<UserId__158757552, List__415060402<Badge__473264247>>;
+      var size : Nat__490723111
+    };
+  stable budgetStore :
+    {
+      var root : Node__46230540<UserId__158757552, Budget__278125643>;
+      var size : Nat__490723111
+    };
+  stable expenseStore :
+    {
+      var root :
+        Node__46230540<UserId__158757552, List__415060402<Expense__809941540>>;
+      var size : Nat__490723111
+    };
+  stable goalStore :
+    {
+      var root :
+        Node__46230540<UserId__158757552,
+                        List__415060402<SavingsGoal__1015804750>>;
+      var size : Nat__490723111
+    };
+  stable profileStore :
+    {
+      var root : Node__46230540<UserId__158349917, UserProfile__324532345>;
+      var size : Nat__490723111
+    }
+};

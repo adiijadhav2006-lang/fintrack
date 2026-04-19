@@ -1,0 +1,26 @@
+{
+  "overview": "FinTrack is a mobile-first personal finance app that makes expense tracking simple and stress-free. It features a real-time spending dashboard, instant expense logging in under 3 taps, smart budgeting with category limits, and a motivational system with achievement badges and savings goals — all in a clean, calming design built for young professionals.",
+  "features": [
+    "Instant expense logging — tap '+', enter amount, save in one tap",
+    "Real-time 'Money Left This Month' dashboard with pie chart",
+    "Category-wise spending with color-coded alerts (green/yellow/red)",
+    "3-step budget setup wizard with per-category spending limits",
+    "Savings goals with visual progress tracking",
+    "Achievement badges — 7-day streak, monthly on-budget",
+    "Monthly reports with category breakdown",
+    "Bottom navigation with Home, Add, Reports, Profile tabs",
+    "Mobile-first design optimized for 320px+ screens",
+    "Positive reinforcement messages — never guilt-inducing"
+  ],
+  "category": "finance",
+  "tags": [
+    "finance",
+    "budgeting",
+    "expense-tracking",
+    "personal-finance",
+    "mobile",
+    "gamification",
+    "savings"
+  ],
+  "last_updated": "2026-04-13T05:57:45.108Z"
+}
